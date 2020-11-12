@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
 spring:
   application:
     name: MultiTenant
@@ -23,7 +23,8 @@ logging:
       ms: TRACE
       
 api:
-  config:
-    codify:
-      uri: /api      
+  codify:
+    secret: CODIFY-SOS-SECRET
+    time: 6000000
+    uri: /api
           

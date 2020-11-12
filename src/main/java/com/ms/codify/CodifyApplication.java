@@ -2,11 +2,14 @@ package com.ms.codify;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+
+import com.ms.codify.config.security.SecurityConfig;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,9 +23,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @SpringBootApplication
 @ComponentScan("com.ms.codify.*")
+@ImportAutoConfiguration({SecurityConfig.class})
 public class CodifyApplication {
 	
-	@Value("${api.config.codify.uri}")
+	@Value("${api.codify.uri}")
 	private String urlServicio = "";
 	
     public static void main(String[] args){
