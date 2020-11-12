@@ -6,8 +6,6 @@ import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
-import com.ms.codify.config.TenantContext;
-
 import javax.sql.DataSource;
 import java.io.Serializable;
 import java.util.HashMap;

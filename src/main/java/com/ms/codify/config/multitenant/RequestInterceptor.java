@@ -1,4 +1,4 @@
-package com.ms.codify.config;
+package com.ms.codify.config.multitenant;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

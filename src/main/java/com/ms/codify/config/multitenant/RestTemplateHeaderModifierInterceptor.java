@@ -1,4 +1,4 @@
-package com.ms.codify.config;
+package com.ms.codify.config.multitenant;
 
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;

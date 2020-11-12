@@ -3,7 +3,6 @@ package com.ms.codify.config.multitenant;
 import org.aspectj.lang.JoinPoint;
 import org.hibernate.Session;
 
-import com.ms.codify.config.TenantContext;
 import com.ms.codify.service.CityServiceImpl;
 
 /**

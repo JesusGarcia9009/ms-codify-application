@@ -1,4 +1,4 @@
-package com.ms.codify.config;
+package com.ms.codify.config.multitenant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
