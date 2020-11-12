@@ -13,6 +13,13 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Interceptor de hibernate - distincion de esquema en dependecia de tenant  - Spring Boot
+ *
+ * @author Jesus Garcia
+ * @since 1.0
+ * @version jdk-11
+ */
 public class MyInterceptor {
 
     private JpaProperties jpaProperties;

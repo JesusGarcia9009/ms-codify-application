@@ -16,14 +16,17 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * Prototype scoped RestTemplate so it X-TenantID Header can be passed to the Rest API Call
+ * Bean donde se define el header del request que debe llegar (se puede agregar GrapQL) - Spring Boot
+ *
+ * @author Jesus Garcia
+ * @since 1.0
+ * @version jdk-11
  */
 @Configuration
 public class RestTemplateConfig {
-    @Bean
-    @Scope(
-            value = ConfigurableBeanFactory.SCOPE_PROTOTYPE,
-            proxyMode = ScopedProxyMode.TARGET_CLASS)
+    
+	@Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
     public RestTemplate restTemplate() {
         RestTemplate localRestTemplate = new RestTemplate();
         List<ClientHttpRequestInterceptor> interceptors = localRestTemplate.getInterceptors();

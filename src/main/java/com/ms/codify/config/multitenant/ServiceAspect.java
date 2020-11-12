@@ -4,15 +4,21 @@ import org.aspectj.lang.JoinPoint;
 import org.hibernate.Session;
 
 import com.ms.codify.config.TenantContext;
-import com.ms.codify.service.CityService;
+import com.ms.codify.service.CityServiceImpl;
 
-//@Aspect
-//@Component
+/**
+ * Aspecto que redefine el comportamiento de los servicios para que tome los repositorios asociados al tenant - Spring Boot
+ *
+ * @author Jesus Garcia
+ * @since 1.0
+ * @version jdk-11
+ */
 public class ServiceAspect {
-    //@Before("execution(* com.example.service.discriminator.CityService.*(..))&& target(cityService) ")
-    public void aroundExecution(JoinPoint pjp, CityService cityService) throws Throwable {
+
+	public void aroundExecution(JoinPoint pjp, CityServiceImpl cityService) throws Throwable {
         org.hibernate.Filter filter = cityService.entityManager.unwrap(Session.class).enableFilter("tenantFilter");
         filter.setParameter("tenantId", TenantContext.getCurrentTenant());
         filter.validate();
     }
+	
 }

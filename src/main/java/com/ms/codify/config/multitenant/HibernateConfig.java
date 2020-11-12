@@ -1,39 +1,34 @@
 package com.ms.codify.config.multitenant;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.sql.DataSource;
+
 import org.hibernate.MultiTenancyStrategy;
 import org.hibernate.cfg.Environment;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.nativejdbc.SimpleNativeJdbcExtractor;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
-import com.ms.codify.config.TenantContext;
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.HashMap;
-import java.util.Map;
-
+/**
+ * Configuracion de TenantID en el hibernate configuration - distincion de esquema en dependecia de tenant  - Spring Boot
+ *
+ * @author Jesus Garcia
+ * @since 1.0
+ * @version jdk-11
+ */
 @Configuration
 public class HibernateConfig {
     
 	@Autowired
     private JpaProperties jpaProperties;
-
-    @Autowired
-    private DataSource dataSource;
 
     @Bean
     JpaVendorAdapter jpaVendorAdapter() {
@@ -41,11 +36,9 @@ public class HibernateConfig {
     }
 
     @Bean
-    LocalContainerEntityManagerFactoryBean entityManagerFactory(
-            DataSource dataSource,
-            MultiTenantConnectionProvider multiTenantConnectionProviderImpl,
-            CurrentTenantIdentifierResolver currentTenantIdentifierResolverImpl
-    ) {
+    LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource,
+					            MultiTenantConnectionProvider multiTenantConnectionProviderImpl,
+					            CurrentTenantIdentifierResolver currentTenantIdentifierResolverImpl ) {
 
     	Map<String, Object> jpaPropertiesMap = new HashMap<>(jpaProperties.getProperties());
         jpaPropertiesMap.put(Environment.MULTI_TENANT, MultiTenancyStrategy.SCHEMA);
@@ -63,29 +56,4 @@ public class HibernateConfig {
         return em;
     }
 
-    @Bean
-    @Scope(
-            value = ConfigurableBeanFactory.SCOPE_PROTOTYPE,
-            proxyMode = ScopedProxyMode.TARGET_CLASS)
-    public JdbcTemplate jdbcTemplate() {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        SimpleNativeJdbcExtractor simpleNativeJdbcExtractor = new SimpleNativeJdbcExtractor() {
-            @Override
-            public Connection getNativeConnection(Connection con) throws SQLException {
-                con.setSchema(TenantContext.getCurrentTenant());
-                return super.getNativeConnection(con);
-            }
-
-            @Override
-            public Connection getNativeConnectionFromStatement(Statement stmt) throws SQLException {
-                return super.getNativeConnectionFromStatement(stmt);
-            }
-        };
-
-        simpleNativeJdbcExtractor.setNativeConnectionNecessaryForNativeStatements(true);
-
-        jdbcTemplate.setNativeJdbcExtractor(simpleNativeJdbcExtractor);
-
-        return jdbcTemplate;
-    }
 }

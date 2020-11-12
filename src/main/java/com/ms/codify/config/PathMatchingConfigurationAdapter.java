@@ -14,7 +14,11 @@ import org.springframework.web.servlet.config.annotation.*;
 import java.util.List;
 
 /**
- * Created by suman.das on 7/23/19.
+ * Configuracion de Beans de intercepcion de request - Spring Boot
+ *
+ * @author Jesus Garcia
+ * @since 1.0
+ * @version jdk-11
  */
 @Configuration
 public class PathMatchingConfigurationAdapter implements WebMvcConfigurer {
@@ -87,7 +91,9 @@ public class PathMatchingConfigurationAdapter implements WebMvcConfigurer {
         return null;
     }
 
-    @Override
+    
+	@Override
+	@SuppressWarnings("deprecation")
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
         configurer.favorPathExtension(false);
     }
@@ -108,6 +114,7 @@ public class PathMatchingConfigurationAdapter implements WebMvcConfigurer {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void configurePathMatch(PathMatchConfigurer configurer) {
         configurer.setUseSuffixPatternMatch(false);
     }

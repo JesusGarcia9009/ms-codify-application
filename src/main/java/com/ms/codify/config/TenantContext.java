@@ -1,5 +1,13 @@
 package com.ms.codify.config;
 
+
+/**
+ * Ejecuta hilo independiente para cada TenantID  - Spring Boot
+ *
+ * @author Jesus Garcia
+ * @since 1.0
+ * @version jdk-11
+ */
 public class TenantContext {
     private static ThreadLocal<String> currentTenant = new InheritableThreadLocal<>();
 

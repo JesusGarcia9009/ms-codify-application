@@ -5,6 +5,13 @@ import org.springframework.stereotype.Component;
 
 import com.ms.codify.config.TenantContext;
 
+/**
+ * Definiendo un tenant por defecto en este caso public - Spring Boot
+ *
+ * @author Jesus Garcia
+ * @since 1.0
+ * @version jdk-11
+ */
 @Component
 public class TenantSchemaResolver implements CurrentTenantIdentifierResolver{
 

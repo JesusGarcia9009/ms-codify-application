@@ -21,4 +21,9 @@ logging:
     org.hibernate: ERROR
     com:
       ms: TRACE
+      
+api:
+  config:
+    codify:
+      uri: /api      
           

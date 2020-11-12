@@ -8,7 +8,11 @@ import org.springframework.http.client.ClientHttpResponse;
 import java.io.IOException;
 
 /**
- * Created by suman.das on 7/22/19.
+ * Verifica que en el header del request venga el TenantID  - Spring Boot
+ *
+ * @author Jesus Garcia
+ * @since 1.0
+ * @version jdk-11
  */
 public class RestTemplateHeaderModifierInterceptor implements ClientHttpRequestInterceptor {
 
