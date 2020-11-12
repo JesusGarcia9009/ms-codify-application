@@ -21,6 +21,9 @@ public interface CityService {
 	 * @author Jesus Garcia
 	 * @param City - Object
 	 * @return City - Object
+	 * @author Jesus Garcia
+	 * @since 1.0
+	 * @version jdk-11
 	 */
 	public City save(City city);
 
@@ -30,6 +33,9 @@ public interface CityService {
 	 * @author Jesus Garcia
 	 * @param none
 	 * @return List<City> listado de ciudades
+	 * @author Jesus Garcia
+	 * @since 1.0
+	 * @version jdk-11
 	 */
     public List<City> getAll();
 
@@ -38,6 +44,9 @@ public interface CityService {
 	 *
 	 * @param none
 	 * @return Optional<City> 
+	 * @author Jesus Garcia
+	 * @since 1.0
+	 * @version jdk-11
 	 */
     public Optional<City> get(Long id);
 
@@ -46,6 +55,9 @@ public interface CityService {
 	 *
 	 * @param none
 	 * @return City see object city
+	 * @author Jesus Garcia
+	 * @since 1.0
+	 * @version jdk-11
 	 */
     public City getByName(String name);
 
@@ -55,6 +67,9 @@ public interface CityService {
 	 *
 	 * @param none
 	 * @return String name
+	 * @author Jesus Garcia
+	 * @since 1.0
+	 * @version jdk-11
 	 */
     public void delete(String name);
     
